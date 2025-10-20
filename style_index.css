@@ -1,0 +1,169 @@
+:root {
+    --dauerAnimation: 60s;
+    --quantity: 0;
+}
+
+@font-face {
+    font-family: Overused;
+    src: url(Font/OverusedGrotesk-Book.otf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Overused;
+    src: url(Font/OverusedGrotesk-ExtraBold.otf);
+    font-weight: black;
+}
+
+@font-face {
+    font-family: Overused;
+    src: url(Font/OverusedGrotesk-Medium.otf);
+    font-weight: medium;
+}
+
+@font-face {
+    font-family: Overused;
+    src: url(Font/OverusedGrotesk-SemiBold.otf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: NNG;
+    src: url(Font/NonNatural\ GroteskPlainBold.otf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: NNG;
+    src: url(Font/Non\ Natural\ Grotesk\ Plain-Light.otf);
+    font-weight: normal;
+}
+
+
+
+* {
+    margin: 0;
+    text-decoration: none;
+    color: white;
+    cursor: none;
+}
+
+/* index */
+
+body {
+    overflow-y: hidden;
+}
+
+.cursor {
+     background-color: rgb(255, 197, 152);
+    width: 15px;
+    height: 15px;
+
+    z-index: 4;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode:hard-light;
+}
+
+#mute-button {
+    font-size: 20px;
+    width: auto;
+    height: 20px;
+
+    border: none;
+    background: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 6;
+    color: white;
+}
+
+#mute-button:hover {
+    font-size: 22px;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.box {
+    width: calc(100vw*(var(--position)/var(--quantity))); /* dev */
+    height: calc(100vh*(var(--position)/var(--quantity))); /* dev */
+    position: fixed;
+    border-radius: 100%;
+    rotate: -60deg;
+}
+
+#work {
+    /* background: radial-gradient(ellipse, rgba(253,77,252,1) 0%, rgba(254,83,253,1) 60%, rgba(244,198,244,1) 94%); */ /* website zur verständnis von gradients https://cssgradient.io */
+    background: radial-gradient(ellipse, rgba(255,184,234,1) 29%, rgba(255,211,242,1) 78%, rgba(255,215,243,1) 94%, rgba(255,184,234,1) 100%);
+    animation: CircleBigger var(--dauerAnimation) infinite linear;
+}
+
+#life {
+    background: rgb(255,99,53);
+    background: radial-gradient(circle, rgb(253, 165, 172) 20%, rgb(250, 180, 184) 75%, rgb(252, 187, 193) 95%, rgba(255,140,149,1) 100%);
+
+    animation: CircleBigger var(--dauerAnimation) infinite linear;
+    animation-delay: calc(var(--position)/var(--quantity)*var(--dauerAnimation)*-1); /* animation wird zurück versetzt, damit bei dem join auf die website alle kreise den hintergrund verdecken -- delay flexibel berechnet, damit einfach die animationsdauer angepasst oder ein vierter menüpunkt hinzugefügt werden kann*/
+}
+
+#about {
+        background: radial-gradient(ellipse, rgba(254,209,183,1) 20%,  75%, rgba(255,236,225,1) 95%, rgba(254,209,183,1) 100%);
+
+    /* background: radial-gradient(ellipse, rgba(234,30,244,1) 9%, rgba(237,121,254,1) 79%); */
+    animation: CircleBigger var(--dauerAnimation) infinite linear;
+    animation-delay: calc(var(--position)/var(--quantity)*var(--dauerAnimation)*-1);
+}
+
+.naviText {
+    font-size: 64px;
+    width: 100%; /* textmaske soll ellipse komplett ausfüllen */
+    height: 100%;
+    clip-path: ellipse(50% 50% at 50% 50%); /* website zur verständnis von Masken https://bennettfeely.com/clippy/ */
+    text-transform: uppercase;
+    font-family: NNG;
+    font-weight: normal;
+    line-height: 1;
+    mix-blend-mode: soft-light;
+    opacity: 0;
+
+}  
+
+.naviText p{
+    width: 350vw; /* der text darf über den Rand laufen, damit werden textfreie flächen beim hover vermieden */
+}
+
+.naviText.active{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.naviText.inactive {
+    opacity: 0;
+}
+
+
+@keyframes CircleBigger {
+    0%{
+        width: 0%;
+        height: 0%;
+        z-index: 3; /* veränderung des z-indexes, damit der kleine kreis nach vorne versetzt wird */
+    }
+    100%{
+        width: 350%;
+        height: 350%;
+        z-index: 0;
+    }
+}

@@ -1,0 +1,880 @@
+/* dev mode start */
+/*
+.carousel__cell {
+    background-color: yellow;
+}
+
+h1 {
+    background-color: blue;
+}
+
+p {
+    background-color: green;
+}
+
+#carousel {
+      background-color: rgba(152,255,155,0.5);
+  
+}
+*/
+/* dev mode end */
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+
+/* general */
+/* img siehe unten bei carousel */
+:root {
+    --rotateScroller: 0deg;
+    --rotateBg: 0;
+    --perspectiveVar: 0;
+    --gifAdjustment: 40deg;
+}
+
+@font-face {
+    font-family: Overused;
+    src: url(Font/OverusedGrotesk-Book.otf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Overused;
+    src: url(Font/OverusedGrotesk-ExtraBold.otf);
+    font-weight: black;
+}
+
+@font-face {
+    font-family: Overused;
+    src: url(Font/OverusedGrotesk-Medium.otf);
+    font-weight: medium;
+}
+
+@font-face {
+    font-family: Overused;
+    src: url(Font/OverusedGrotesk-SemiBold.otf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: NNG;
+    src: url(Font/NonNatural\ GroteskPlainBold.otf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: NNG;
+    src: url(Font/Non\ Natural\ Grotesk\ Plain-Light.otf);
+    font-weight: normal;
+}
+
+*{
+    border: 0;
+    color: 	#434343;
+    cursor: none;
+}
+@media screen and (max-width: 10000px) { 
+/* general style */
+body {
+    padding: 0px;
+    margin: 0px;
+    width: 100vw;
+    height: 5000px;
+}
+
+main{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    perspective: var(--perspectiveVar);
+    transform-style: preserve-3d;
+}
+
+
+
+h1 {
+    font-size: 200px;
+    mix-blend-mode: difference;
+    font-family: NNG;
+    font-weight: bolder;
+}
+
+p {
+    top: -20px;
+    font-size: 140px;
+    font-weight: normal;
+    font-family: NNG;
+}
+
+
+
+/* special */
+.cursor {
+    background-color: rgb(255, 197, 152);
+    width: 15px;
+    height: 15px;
+
+    z-index: 4;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode:hard-light;
+}
+
+.backToHub{
+    width: 40px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: rgb(255, 197, 152);
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 4;
+    mix-blend-mode:hard-light;
+}
+.backToHub:hover{
+    width: 42px;
+    height: 21px;
+ 
+}
+button {
+    cursor: none;
+}
+
+#mute-button:hover {
+    font-size: 22px;
+}
+
+#mute-button {
+    font-size: 20px;
+    width: auto;
+    height: 20px;
+
+
+    background: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    color: rgb(255, 197, 152);
+    mix-blend-mode:hard-light;
+}
+
+/* background */
+.scrollContainer {
+    display: flex;
+    overflow-x: hidden;
+}
+
+.bg {
+    min-width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    opacity: 1;
+    transform: translateX(var(--rotateBg));
+  }
+  
+/* carousel */
+#carousel {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    transform: 
+    rotateY(var(--rotateScroller))
+    ;
+    font-family: Overused;
+}
+
+.carousel__cell {
+    position: absolute;
+    width: 3700px;
+    height: auto;
+    transform: 
+        translateY(2000px) 
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+        translateZ(-10000px);
+}
+
+.carousel__cell p{
+    width: 3400px;
+    margin-top: -40px;
+    margin-left: 40px;
+    font-family: Overused;
+}
+    
+img {
+    position: absolute;
+    width: 2000px;
+    height: auto;
+    border-radius: 50%;
+    /*opacity: 0.9;*/
+/*
+    transform:
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+        translateZ(-4500px);
+
+    opacity: 0.8;
+      */
+}
+
+
+
+
+
+
+
+
+
+/* LIFE */
+
+#img1 {
+    width: 2000px;
+    transform:    
+        translateY(-400px) 
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg - 10deg)) 
+        translateZ(-2000px);
+}
+
+#img2 {
+    height: 2000px;
+    width: auto;
+    transform: 
+    translateY(1000px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 30deg)) 
+        translateZ(-8000px);  
+}
+
+#img21 {
+    width: 4000px;
+    transform: 
+        translateY(-1500px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 10deg)) 
+        translateZ(-4000px);   
+}
+
+#img22 {
+    width: 2000px;
+    transform: 
+        translateY(500px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 30deg)) 
+        translateZ(-2000px);   
+}
+
+#img3 {
+    width: 4000px;
+    transform: 
+    translateY(-800px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 25deg)) 
+        translateZ(-4000px);  
+}
+
+#img31 {
+    width: 2000px;
+    transform: 
+        translateY(50px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 10deg)) 
+        translateZ(-8000px);  
+}
+
+#img4 {
+    width: 5000px;
+    transform: 
+        translateY(-1350px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 20deg))  
+        translateZ(-4000px);  
+}
+
+/*
+#img5 {
+    width:2000px;
+    height: auto;
+    transform: 
+        translateY(600px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 20) * 1deg + 50deg)) 
+        translateZ(-2000px); 
+}
+
+#img51 {
+    width: 4000px;
+    transform: 
+    translateY(1500px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 22deg)) 
+        translateZ(-4000px);  
+}
+        
+*/
+
+
+#img6 {
+    width: 4000px;
+    transform: 
+    translateY(-500px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 30deg)) 
+        translateZ(-4000px); 
+}
+
+#img61 {
+    width: 2000px;
+    transform: 
+        translateY(-800px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 15deg)) 
+        translateZ(-2000px);  
+}
+
+#img62 {
+    width: 2000px;
+    transform: 
+        translateY(0px)    
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) + 3) * 1deg - 10deg)) 
+        translateZ(-8000px);
+}
+
+
+ /* LIFE */ 
+
+ #bg {
+    background: linear-gradient(90deg, rgb(253, 199, 203) 20%, rgb(249, 186, 190) 75%, rgb(255, 176, 185) 95%);
+}
+#bg1 {
+    background: linear-gradient(-90deg,  rgb(253, 199, 203) 20%, rgb(249, 186, 190) 75%, rgb(255, 176, 185) 95%);
+    transform: translateX(calc(var(--rotateBg) + 99vw));
+}
+
+#bg2 {
+    background: linear-gradient(90deg,  rgb(253, 199, 203) 20%, rgb(249, 186, 190) 75%, rgb(255, 176, 185) 95%);
+    transform: translateX(calc(var(--rotateBg) + 198vw));
+}
+
+#bg3 {
+    background: linear-gradient(-90deg,  rgb(253, 199, 203) 20%, rgb(249, 186, 190) 75%, rgb(255, 176, 185) 95%);
+    transform: translateX(calc(var(--rotateBg) + 297vw));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* WORK */
+/* Hintergrund weiß/grau/beige ändern */
+
+
+#bgw {
+    background: linear-gradient(90deg, rgba(255,184,234,1) 29%, rgba(255,211,242,1) 78%, rgba(255,215,243,1) 94%);}
+
+#bg1w {
+    background: linear-gradient(-90deg, rgba(255,184,234,1) 29%, rgba(255,211,242,1) 78%, rgba(255,215,243,1) 94%);    
+    transform: translateX(calc(var(--rotateBg) + 99vw));
+}
+
+#bg2w {
+    background: linear-gradient(90deg, rgba(255,184,234,1) 29%, rgba(255,211,242,1) 78%, rgba(255,215,243,1) 94%);    
+    transform: translateX(calc(var(--rotateBg) + 198vw));
+}
+
+#bg3w {
+    background: linear-gradient(-90deg, rgba(255,184,234,1) 29%, rgba(255,211,242,1) 78%, rgba(255,215,243,1) 94%);
+        transform: translateX(calc(var(--rotateBg) + 297vw));
+}
+
+/* Skyspace */
+#img1w {    
+    width: 2000px;
+    transform: 
+        translateY(200px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 30deg)) 
+        translateZ(-2000px);   
+}
+
+#img11w {
+    width: 4000px;
+    transform: 
+    translateY(-1500px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 10deg)) 
+        translateZ(-4000px);   
+}
+
+#img12w {
+    width: 2000px;
+    transform: 
+    translateY(-1500px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 20deg)) 
+        translateZ(-8000px);   
+}
+
+/* Roden Crater */
+#img2w {
+    width: 4000px;
+    transform: 
+        translateY(-1500px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 22deg)) 
+        translateZ(-4000px);   
+}
+/*
+#img21w {
+    width: 0px;
+    transform: 
+        translateY(-540px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 42) * 1deg)) 
+        translateZ(-3000px);   
+}
+*/
+#img22w {
+    width: 2000px;
+    height: auto;
+    transform: 
+        translateY(-800px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 20) * 1deg - 10deg)) 
+        translateZ(-2000px);   
+}
+/*
+#img23w {
+    width: 0px;
+    transform: 
+        translateY(-1500px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) + 20) * 1deg)) 
+        translateZ(-7500px);   
+}
+*/
+#img24w {
+    width:2000px;
+    transform: 
+        translateY(1200px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) + 42) * 1deg - 22deg)) 
+        translateZ(-8000px);   
+}
+
+
+
+/* Spread */
+#img3w {
+    width: 4000px;
+    transform: 
+        translateY(-1900px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) + 5) * 1deg)) 
+        translateZ(-4000px);   
+}
+
+#img31w {
+    width: 2000px;
+    transform: 
+     translateY(-1100px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 5) * 1deg - 15deg)) 
+        translateZ(-8000px);   
+}
+
+#img32w {
+    width: 2000px;
+    transform: 
+        translateY(300px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 13) * 1deg - 5deg)) 
+        translateZ(-2000px);   
+}
+
+
+
+    /* Guggenheim */
+
+#GugTextWrap {
+    position: absolute;
+    width: 3700px;
+    height: auto;
+    transform: 
+        translateY(2000px) 
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg + 7deg)) 
+        translateZ(-10000px);
+}
+#img4w {
+    width: 4000px;
+    transform: 
+        translateY(-1300px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 10) * 1deg + 40deg)) 
+        translateZ(-4000px);   
+}
+
+#img41w {
+    width: 2000px;
+    transform: 
+        translateY(600px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 5) * 1deg + 1deg)) 
+        translateZ(-8000px);   
+}
+/*
+#img42w {
+    width: 0px;
+    transform: 
+        translateY(-2000px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) + 5) * 1deg)) 
+        translateZ(-7500px);   
+}
+
+#img43w {
+    width: 0px;
+    transform: 
+        translateY(0px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) + 12) * 1deg)) 
+        translateZ(-4500px);   
+}
+*/
+
+
+
+
+
+
+
+/* 
+#img22w {
+    width:1500px;
+    height: auto;
+    transform: 
+        translateY(-600px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 20) * 1deg - 10deg)) 
+        translateZ(-2000px); 
+}
+        
+#img1w {    
+    width: 2500px;
+    transform: 
+        translateY(0px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 30deg)) 
+        translateZ(-2500px);   
+}
+
+#img11w {
+    width: 3000px;
+    transform: 
+    translateY(-1000px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 10deg)) 
+        translateZ(-3000px);   
+}
+
+#img2w {
+    width: 5000px;
+    transform: 
+        translateY(-2000px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 22deg)) 
+        translateZ(-4000px);   
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/* BTS BTS BTS */
+
+
+#bgb {
+    background: linear-gradient(90deg, rgba(255,205,176,1) 20%, rgba(255,210,185,1) 75%, rgba(255,225,208,1) 89%);
+}
+
+#bg1b {
+    background: linear-gradient(-90deg, rgba(255,205,176,1) 20%, rgba(255,210,185,1) 75%, rgba(255,225,208,1) 89%);
+    transform: translateX(calc(var(--rotateBg) + 99vw));
+}
+
+#bg2b {
+    background: linear-gradient(90deg, rgba(255,205,176,1) 20%, rgba(255,210,185,1) 75%, rgba(255,225,208,1) 89%);
+    transform: translateX(calc(var(--rotateBg) + 198vw));
+}
+
+#bg3b {
+    background: linear-gradient(-90deg, rgba(255,205,176,1) 20%, rgba(255,210,185,1) 75%, rgba(255,225,208,1) 89%);
+    transform: translateX(calc(var(--rotateBg) + 297vw));
+}
+
+
+
+
+#img1b {
+    width: 2000px;
+    transform: 
+        translateY(-600px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 20deg)) 
+        translateZ(-2000px);   
+}
+
+#img2b {
+    width: 4000px;
+    transform: 
+        translateY(-600px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 40deg)) 
+        translateZ(-4000px);   
+}
+
+#img21b {
+    width: 2000px;
+    transform: 
+        translateY(-700px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 10deg)) 
+        translateZ(-2000px);   
+}
+
+#img22b {
+    width: 2000px;
+    transform: 
+        translateY(-400px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 20deg)) 
+        translateZ(-8000px);   
+}
+
+/* transform rotateY mit variable funktioniert nicht bei videos, deswegen wird es per hand gemacht*/
+/* video stoppt an unregelmäßigen punkten, vermutlich wegen performance */
+
+
+#v34b {
+    height: 2000px;
+    width: auto;
+    transform: 
+        translateY(-1000px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 34deg)) 
+        translateZ(-2000px);   
+}
+
+
+/*
+#v32b {
+    width: 400px;
+    transform: 
+    translateY(200px)
+        rotateY(170deg)
+        translateZ(-900px);
+}
+
+#v33b {
+    width: 600px;
+    transform: 
+    translateY(400px)
+        rotateY(200deg)
+        translateZ(-9w00px);
+}
+*/
+
+#v31b {
+    width: 4000px;
+    transform: 
+        translateY(200px)
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 60deg)) 
+        translateZ(-4000px);
+}
+/*
+#v35b {
+    width: 600px;
+    transform: 
+    translateY(0px)
+        rotateY(100deg)
+        translateZ(-900px);
+}
+
+#v36b {
+    width: 2000px;
+    
+    transform: 
+    translateY(600px)
+        rotateY(70deg)
+        translateZ(-1800px);
+
+}
+
+#v37b {
+    width: 800px;
+    transform: 
+    translateY(-100px)
+        rotateY(70deg)
+        translateZ(-1400px);
+}
+*/
+.up {
+    position: absolute;
+    width: 3700px;
+    height: auto;
+    transform: 
+        translateY(1200px) 
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+        translateZ(-10000px);
+    font-family: Overused;
+}
+
+.up p{
+    width: 3400px;
+    margin-top: -40px;
+    margin-left: 40px;
+    font-family: Overused;
+}
+}
+
+@media screen and (max-width: 750px) { 
+    h1 {
+        font-size: 72px;
+        mix-blend-mode: difference;
+        font-family: NNG;
+        font-weight: bold;
+        margin-left: -500px;
+        width: 1200px;
+    }
+
+    .carousel__cell {
+        position: absolute;
+        width: 1000px;
+        height: auto;
+        transform:
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+            translateZ(-1500px);
+    }
+
+    .carousel__cell p{
+        width: 1000px;
+        margin-top: -40px;
+        margin-left: -460px;
+        font-family: Overused;
+    }
+
+    #cell2 {
+        transform: 
+            translateY(300px) 
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+            translateZ(-1500px);
+    }
+
+    #img3 {
+    transform: 
+        translateY(500px)    
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) + 9.5 ) * 1deg)) 
+        translateZ(-4500px);
+    }
+
+    #img31 {
+        width: 700px;
+        transform: 
+            translateY(430px)    
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 9 ) * 1deg)) 
+            translateZ(-3000px);
+    }
+    #cell4 {
+        transform: 
+            translateY(300px) 
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+            translateZ(-1500px);
+    }
+    #img4 {
+        transform: 
+            translateY(-1200px)    
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+            translateZ(-4500px);
+    }
+    #img5 {
+        transform: 
+            translateY(500px)    
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 2.5) * 1deg)) 
+            translateZ(-4500px);
+    }
+    #cell6 {
+        transform: 
+            translateY(50px) 
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+            translateZ(-1500px);
+    }
+}
+
+@media screen and (max-width: 550px) { 
+    h1 {
+        font-size: 72px;
+        mix-blend-mode: difference;
+        font-family: NNG;
+        font-weight: bold;
+        margin-left: -280px;
+        width: 800px;
+    }
+
+    .carousel__cell {
+        position: absolute;
+        width: 100px;
+        height: auto;
+        transform:
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) ) * 1deg)) 
+            translateZ(-1500px);
+    }
+
+    .carousel__cell p{
+        width: 700px;
+        margin-top: -40px;
+        margin-left: -240px;
+        font-family: Overused;
+    }
+
+    #img3 {
+    transform: 
+        translateY(500px)    
+        rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) + 9.5 ) * 1deg)) 
+        translateZ(-4500px);
+    }
+
+    #img31 {
+        width: 700px;
+        transform: 
+            translateY(430px)    
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 9 ) * 1deg)) 
+            translateZ(-3000px);
+    }
+    #img5 {
+        transform: 
+            translateY(700px)    
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity) - 5.5) * 1deg)) 
+            translateZ(-4500px);
+    }
+
+    #img1w {    
+        width: 1500px;
+        transform: 
+            translateY(500px)
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg + 10deg)) 
+            translateZ(-4500px);   
+    }
+    
+    #img11w {
+        width: 1500px;
+        transform: 
+        translateY(500px)
+            rotateY(calc( (var(--position) - 1) * (-360 / var(--quantity)) * 1deg - 10deg)) 
+            translateZ(-4500px);   
+    }
+
+    #p1 {
+        width: 700px;
+        transform: 
+            translateY(-637px)   
+            translateX(770px)    
+        
+    }
+    
+}
